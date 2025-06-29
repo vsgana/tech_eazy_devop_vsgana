@@ -1,11 +1,12 @@
 # TechEazyassisment
 ## 📁 Terraform Files
-`text
+<pre>
 terraform/
 ├── main.tf
 ├── variable.tf
 ├── dev.tfvars
 ├── prod.tfvars
+</pre>
 
 
 
