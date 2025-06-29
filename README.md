@@ -1,6 +1,5 @@
 # TechEazyassisment
 ## 📁 Terraform Files
-
 ```text
 terraform/
 ├── main.tf
