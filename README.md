@@ -78,11 +78,30 @@ terraform destroy -auto-approve -var-file="dev.tfvars"
 SSH into the EC2 instance and run:
 
 ```bash
-# Install Java & Maven if not done
-sudo apt update && sudo apt install -y openjdk-21-jdk maven
+## ☕ Install Java 21 and Maven 3.9.10 (Linux/EC2)
+
+```bash
+# Update and install tools
+sudo yum update -y 
+sudo yum install -y wget unzip 
+# For Amazon Linux 2:
+sudo rpm --import https://yum.corretto.aws/corretto.key
+sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
+sudo yum install -y java-21-amazon-corretto
+
+# Maven 3.9.10 installation
+cd /opt
+sudo wget https://downloads.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.zip
+sudo unzip apache-maven-3.9.10-bin.zip
+sudo mv apache-maven-3.9.10 apache-maven
+sudo ln -s /opt/apache-maven/bin/mvn /usr/bin/mvn
+
+# Verify
+java -version
+mvn -version
 
 # Clone your repo
-git clone https://github.com/<your-username>/<repo-name>.git
+git clone https://github.com/techeazy-consulting/techeazy-devops.git
 cd repo-name/spring-boot-app
 
 # Build the application
@@ -92,43 +111,7 @@ mvn clean install
 sudo java -jar target/techeazy-devops-0.0.1-SNAPSHOT.jar
 ```
 
-> The app will run at: `http://<your-ec2-ip>/`
-
----
-
-## 🔐 .gitignore (suggested)
-
-```gitignore
-# Java
-/target
-*.class
-
-# Terraform
-*.tfstate
-*.tfstate.*
-.terraform/
-.terraform.lock.hcl
-
-# Others
-*.log
-.idea/
-.vscode/
-```
-
----
-
-## ✍️ Author
-
-**Satvik Vagu**
-Cloud | DevOps | Terraform | Spring Boot
-
----
-
-## 📜 License
-
-MIT License
-
-
+> The app will run at: `http://13.234.34.93:80/`
 
 
 
