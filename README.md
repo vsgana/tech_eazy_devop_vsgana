@@ -1,9 +1,8 @@
 # TechEazyassisment
-  terraform/
-├── main.tf
-├── variable.tf
-├── dev.tfvars
-├── prod.tfvars
+## 📁 Project Structure
+├── index.html  
+├── style.css  
+└── script.js 
 
 
   
