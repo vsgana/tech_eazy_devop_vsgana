@@ -10,23 +10,28 @@ terraform {
 provider "aws" {
   region=var.region
 }
-
 resource "aws_security_group" "seg_as" {
-    name ="stg"
-    ingress {
-    from_port = 0
-    to_port = 80
-    protocol = "tcp"
+  name = "stg"
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  } 
-  
-  egress{
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
 
 resource "aws_key_pair" "TF_key" {
   key_name   = "devops"
