@@ -112,7 +112,7 @@ sudo java -jar target/techeazy-devops-0.0.1-SNAPSHOT.jar
 ```
 
 > The app will run at: `http://13.234.34.93:80/`
-![Deployment](images/eployment-screenshot.png.png)
+![Deployment](images/deployment.png)
 
 
 
