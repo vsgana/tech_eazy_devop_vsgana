@@ -1,10 +1,10 @@
 # TechEazyassisment
 ## 📁 terraform
-├── main.tf 
-├── variable.tf  
-├── dev.tfvars
-├── prod.tfvars
-└── script.sh
+ ├── main.tf 
+ ├── variable.tf  
+ ├── dev.tfvars
+ ├── prod.tfvars
+ └── script.sh
 
 
 
