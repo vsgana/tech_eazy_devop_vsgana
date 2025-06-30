@@ -18,6 +18,7 @@ terraform/
 ├── variable.tf
 ├── dev.tfvars
 ├── prod.tfvars
+├── output.tf
 ├──script.sh
 ```
 
