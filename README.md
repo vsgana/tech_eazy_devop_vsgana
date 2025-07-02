@@ -1,4 +1,4 @@
-# TechEazyassisment
+ # TechEazyassisment
 ## ⚙️ Terraform Workflow
 
 This section outlines how to provision infrastructure on AWS using Terraform with support for **multiple environments** via **workspaces** and **`.tfvars` files**.
@@ -121,11 +121,11 @@ Run the script:
 ./automate.sh
 ```
 📄 Log Output
-Check the application log:
+Check the application logs:
 ```bash
 cat /opt/app.log
 ```
-> The app will run at: `http://13.234.34.93:80/`
+> The app will run at: `http://43.204.145.221:80/`
 ![Deployment](images/deployment.png)
 
 
