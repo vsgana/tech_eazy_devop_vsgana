@@ -126,7 +126,7 @@ Check the application logs:
 cat /opt/app.log
 ```
 > The app will run at: `http://43.204.145.221:80/`
-![Deployment](images/deployment.png)
+![Deployment](images/deployment2.png)
 
 
 
