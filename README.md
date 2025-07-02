@@ -136,6 +136,7 @@ cat /opt/app.log
 ![Deployment](images/deployment2.png)
 
 📦 Log Upload Automation on EC2 Shutdown To S3 Bucket
+
 To ensure logs are not lost when the EC2 instance stops or terminates, a shutdown automation is implemented.
 
 
