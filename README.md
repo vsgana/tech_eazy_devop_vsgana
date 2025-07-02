@@ -7,7 +7,7 @@ This section outlines how to provision infrastructure on AWS using Terraform wit
 
 * Terraform installed (`terraform -v`)
 * AWS CLI configured (`aws configure`)
-* AWS access keys with EC2 permission
+* AWS access keys 
 * Valid EC2 AMI ID and key pair (e.g. from Mumbai region)
 
 ### 📁 Terraform Files
@@ -19,7 +19,8 @@ terraform/
 ├── dev.tfvars
 ├── prod.tfvars
 ├── output.tf
-├──script.sh
+├── scripts/
+│   └── setup.sh
 ```
 
 ### 🛠️ Step-by-Step Terraform Flow
@@ -73,45 +74,57 @@ terraform destroy -auto-approve -var-file="dev.tfvars"
 ```
 
 ---
+🚀 Java App Automation Setup
 
-## 🛠️ Build & Deploy Spring Boot App
-
-SSH into the EC2 instance and run:
-
+🧱 Step-by-Step Setup
+1 .Check Java and Maven:
 ```bash
-## ☕ Install Java 21 and Maven 3.9.10 (Linux/EC2)
-
-```bash
-# Update and install tools
-sudo yum update -y 
-sudo yum install -y wget unzip 
-# For Amazon Linux 2:
-sudo rpm --import https://yum.corretto.aws/corretto.key
-sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
-sudo yum install -y java-21-amazon-corretto
-
-# Maven 3.9.10 installation
-cd /opt
-sudo wget https://downloads.apache.org/maven/maven-3/3.9.10/binaries/apache-maven-3.9.10-bin.zip
-sudo unzip apache-maven-3.9.10-bin.zip
-sudo mv apache-maven-3.9.10 apache-maven
-sudo ln -s /opt/apache-maven/bin/mvn /usr/bin/mvn
-
-# Verify
 java -version
-mvn -version
-
-# Clone your repo
-git clone https://github.com/techeazy-consulting/techeazy-devops.git
-cd repo-name/spring-boot-app
-
-# Build the application
-mvn clean install
-
-# Run the JAR
-sudo java -jar target/techeazy-devops-0.0.1-SNAPSHOT.jar
+source /etc/profile.d/maven.sh
+mvn -v
 ```
+2.Clone the Repository:
+```bash
+git clone https://github.com/techeazy-consulting/techeazy-devops.git
+cd techeazy-devops
+```
+3.Build the Project:
+```bash
+mvn install
+```
+4.Create and Fix Log File Permissions:
+```bash
+sudo touch /opt/app.log
+sudo chown ec2-user:ec2-user /opt/app.log
+```
+⚙️ Automate App Startup
+Create the automation script:
+```bash
+vi automate.sh
+```
+Paste the following contents:
+```bash
+#!/bin/bash
 
+# Start the Java app in background and log output to /opt/app.log
+sudo nohup java -jar /home/ec2-user/techeazy-devops/target/techeazy-devops-0.0.1-SNAPSHOT.jar > /opt/app.log 2>&1 &
+
+# Log startup time
+sudo bash -c 'echo "App manually started at \$(date)" >> /opt/app.log'
+```
+Make it executable:
+```bash
+chmod +x automate.sh
+```
+Run the script:
+```bash
+./automate.sh
+```
+📄 Log Output
+Check the application log:
+```bash
+cat /opt/app.log
+```
 > The app will run at: `http://13.234.34.93:80/`
 ![Deployment](images/deployment.png)
 
