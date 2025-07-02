@@ -139,6 +139,25 @@ cat /opt/app.log
 
 To ensure logs are not lost when the EC2 instance stops or terminates, a shutdown automation is implemented.
 
+🔄 What It Does
+On instance shutdown, a custom script automatically uploads:
+
+/var/log/cloud-init.log → S3
+
+/opt/app.log → S3
+
+This ensures that all important logs are preserved for auditing and debugging purposes.
+
+⚙️ How It Works
+
+A shutdown script (/opt/shutdown.sh) is created via the EC2 user data.
+
+A systemd service (upload-logs.service) is registered to run the script on shutdown.
+
+The script uses the AWS CLI and EC2 IAM Role with s3:PutObject permission
+
+✅ Result
+Logs are automatically backed up to your S3 bucket every time the EC2 instance is stopped or terminated — with no manual effort required.
 
 
 
