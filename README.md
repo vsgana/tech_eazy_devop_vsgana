@@ -72,7 +72,12 @@ terraform apply -auto-approve -var-file="dev.tfvars"
 ```bash
 terraform destroy -auto-approve -var-file="dev.tfvars"
 ```
-
+✅ 1. EC2 Dashboard
+![EC2 Dashboard](images/ec2-dashboard.png)
+2. S3 Bucket Dashboard
+![S3 Dashboard](images/s3-dashboard.png)
+3. IAM Policies 
+![IAM Policies](images/iam-policies.png)
 ---
 🚀 Java App Automation Setup
 
