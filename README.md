@@ -157,7 +157,12 @@ A systemd service (upload-logs.service) is registered to run the script on shutd
 The script uses the AWS CLI and EC2 IAM Role with s3:PutObject permission
 
 ✅ Result
+
 Logs are automatically backed up to your S3 bucket every time the EC2 instance is stopped or terminated — with no manual effort required.
+
+![EC2-logs](images/ec2-logs.png)
+
+![App-logs](images/app-logs.png)
 
 
 
