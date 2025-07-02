@@ -14,20 +14,22 @@ resource "aws_iam_role" "read_only" {
 
 resource "aws_iam_policy" "read_only_policy" {
   name = "${var.stage}_read_only_policy"
+
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Action = [
-          "s3:ListBucket",
-          "s3:GetObject"
-        ],
+        Action   = ["s3:ListBucket", "s3:GetObject"],
         Effect   = "Allow",
-        Resource = "*"
+        Resource = [
+          "arn:aws:s3:::${var.bucket_name}",
+          "arn:aws:s3:::${var.bucket_name}/*"
+        ]
       }
     ]
   })
 }
+
 
 resource "aws_iam_role_policy_attachment" "read_only_attach" {
   role       = aws_iam_role.read_only.name
