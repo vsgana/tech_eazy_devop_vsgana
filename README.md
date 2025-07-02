@@ -132,8 +132,6 @@ Check the application logs:
 ```bash
 cat /opt/app.log
 ```
-verify that files can be listed from the S3 bucket
-
 > The app will run at: `http://43.204.145.221:80/`
 ![Deployment](images/deployment2.png)
 
